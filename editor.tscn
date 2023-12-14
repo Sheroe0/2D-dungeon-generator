@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb6oq56niteq8"]
+
+[ext_resource type="Script" path="res://Camera2D.gd" id="1_f0vid"]
+[ext_resource type="Script" path="res://Mouse_behavior.gd" id="1_f75ck"]
+[ext_resource type="TileSet" uid="uid://ijqrcpxms8ut" path="res://Level_generator/Main_tile_set.tres" id="2_f76vj"]
+[ext_resource type="Texture2D" uid="uid://pe2xia328u47" path="res://red.bmp" id="3_prt08"]
+
+[node name="Editor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mouse_behavior" type="Control" parent="."]
+anchors_preset = 0
+script = ExtResource("1_f75ck")
+
+[node name="red" type="Sprite2D" parent="Mouse_behavior"]
+position = Vector2(291, 305)
+texture = ExtResource("3_prt08")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_f76vj")
+format = 2
+layer_0/tile_data = PackedInt32Array(655366, 2, 1, 589830, 393218, 0, 524294, 393218, 0, 458758, 393218, 0, 393222, 393218, 0, 327686, 655362, 2, 327687, 262146, 0, 327688, 262146, 1, 327689, 262146, 1, 327690, 262146, 0, 327691, 720898, 2, 393227, 393218, 0, 458763, 393218, 0, 524299, 393218, 0, 589835, 327682, 4, 589836, 131074, 2, 655372, 131074, 4, 655371, 393218, 4, 655370, 655362, 2, 720906, 720898, 3, 720905, 262146, 0, 720904, 196610, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="Control"]
+position = Vector2(576, 324)
+script = ExtResource("1_f0vid")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Panel" type="Panel" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
