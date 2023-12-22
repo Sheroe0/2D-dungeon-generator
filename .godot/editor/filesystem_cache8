@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1703262769
+::res://::1703267238
 Camera2D.gd::GDScript::-1::1700469003::0::1::::<>Camera2D<>::
 editor.tscn::PackedScene::4907906156192840777::1703169564::0::1::::<><>::res://Camera2D.gd<>res://Mouse_behavior.gd<>uid://ijqrcpxms8ut::::res://Level_generator/Main_tile_set.tres<>uid://pe2xia328u47::::res://red.bmp<>res://Main_editor_script.gd<>res://Save_selected_area.gd<>res://Exclusion_button.gd
 Exclusion_button.gd::GDScript::-1::1703162477::0::1::::<>Button<>::

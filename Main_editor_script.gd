@@ -1,7 +1,22 @@
 extends TileMap
 
+var file_path = "user://TileMap_source.dat"
+
+func check_object_name_exists(object_name):
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	if file:
+		while not file.eof_reached():
+			var line = file.get_line().strip_edges()
+			if len(line) > 0 and line.split(",")[0] == object_name:
+				file.close()
+				$"../Interfase/Panel".visible = true
+				$"../Interfase/Panel/VBoxContainer/Label".text = "Такое имя присета уже существует"
+				return true
+		file.close()
+	return false
 
 func save(rectangle, object_name):
+	if check_object_name_exists(object_name): return
 	var x = abs( rectangle[1].x - rectangle[0].x )
 	var y = abs( rectangle[1].y - rectangle[0].y )
 	var tile_pos = Vector2.ZERO
@@ -27,10 +42,12 @@ func save(rectangle, object_name):
 	for i in source_arr.size():
 		print(source_arr[i])
 	
-	var file_path = "user://TileMap_source.dat"
 	var file = FileAccess.open(file_path, FileAccess.READ_WRITE) # Открытие файла для записи, если он существует
 	if !file:
 		file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.seek_end()
 	file.store_string(str(source_arr)+"\n")
 	file.close() # Закрываем файл
+	
+	$"../Interfase/Panel".visible = true
+	$"../Interfase/Panel/VBoxContainer/Label".text = "Сохранено :)"
