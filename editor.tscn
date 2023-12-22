@@ -1,19 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cb6oq56niteq8"]
+[gd_scene load_steps=8 format=3 uid="uid://cb6oq56niteq8"]
 
 [ext_resource type="Script" path="res://Camera2D.gd" id="1_f0vid"]
 [ext_resource type="Script" path="res://Mouse_behavior.gd" id="1_f75ck"]
 [ext_resource type="TileSet" uid="uid://ijqrcpxms8ut" path="res://Level_generator/Main_tile_set.tres" id="2_f76vj"]
 [ext_resource type="Texture2D" uid="uid://pe2xia328u47" path="res://red.bmp" id="3_prt08"]
+[ext_resource type="Script" path="res://Main_editor_script.gd" id="4_j71ks"]
+[ext_resource type="Script" path="res://Save_selected_area.gd" id="5_bxdyv"]
+[ext_resource type="Script" path="res://Exclusion_button.gd" id="7_embkg"]
 
-[node name="Editor" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Editor" type="Node2D"]
 
 [node name="Mouse_behavior" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_f75ck")
 
@@ -21,25 +19,23 @@ script = ExtResource("1_f75ck")
 position = Vector2(291, 305)
 texture = ExtResource("3_prt08")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="MainTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_f76vj")
 format = 2
-layer_0/tile_data = PackedInt32Array(655366, 2, 1, 589830, 393218, 0, 524294, 393218, 0, 458758, 393218, 0, 393222, 393218, 0, 327686, 655362, 2, 327687, 262146, 0, 327688, 262146, 1, 327689, 262146, 1, 327690, 262146, 0, 327691, 720898, 2, 393227, 393218, 0, 458763, 393218, 0, 524299, 393218, 0, 589835, 327682, 4, 589836, 131074, 2, 655372, 131074, 4, 655371, 393218, 4, 655370, 655362, 2, 720906, 720898, 3, 720905, 262146, 0, 720904, 196610, 0)
+layer_0/tile_data = PackedInt32Array(655366, 2, 1, 589830, 393218, 0, 524294, 393218, 0, 458758, 393218, 0, 393222, 393218, 0, 327686, 655362, 2, 327687, 262146, 0, 327688, 262146, 1, 327689, 262146, 1, 327690, 262146, 0, 327691, 720898, 2, 393227, 393218, 0, 458763, 393218, 0, 524299, 393218, 0, 589835, 327682, 4, 589836, 131074, 2, 655372, 131074, 4, 655371, 2, 0, 655370, 65536, 0, 720906, 327680, 0, 720905, 131072, 0, 720904, 327680, 0, 786438, 65536, 0, 720902, 262144, 0, 720903, 262144, 0, 655368, 131072, 0, 655367, 327680, 0, 589831, 65536, 0, 786439, 65536, 0, 786440, 131072, 0, 851976, 0, 0, 655369, 131072, 0, 589834, 131072, 0, 524298, 0, 0, 458762, 262144, 0, 393226, 65536, 0, 393225, 65536, 0, 393224, 131072, 0, 393223, 327680, 0, 458759, 196608, 0, 524295, 262144, 0, 589832, 262144, 0, 589833, 131072, 0, 524297, 0, 0, 458761, 327680, 0, 458760, 262144, 0, 524296, 0, 0)
+script = ExtResource("4_j71ks")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AdditionalTileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_f76vj")
+format = 2
 
-[node name="Camera2D" type="Camera2D" parent="Control"]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 script = ExtResource("1_f0vid")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-layout_mode = 1
+[node name="Interfase" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Interfase"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -47,6 +43,70 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="Panel" type="Panel" parent="Control/HBoxContainer"]
+[node name="Panel" type="Panel" parent="Interfase/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Interfase/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interfase/HBoxContainer/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Save_selected_area" type="Button" parent="Interfase/HBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Сохранить"
+script = ExtResource("5_bxdyv")
+
+[node name="LineEdit" type="LineEdit" parent="Interfase/HBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Введите название"
+
+[node name="Button" type="Button" parent="Interfase/HBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "1231
+"
+
+[node name="Panel" type="Panel" parent="Interfase"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interfase/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Interfase/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="Button" type="Button" parent="Interfase/Panel/VBoxContainer"]
+layout_mode = 2
+text = "ОХ"
+script = ExtResource("7_embkg")
+
+[connection signal="pressed" from="Interfase/HBoxContainer/Panel/HBoxContainer/VBoxContainer/Save_selected_area" to="Interfase/HBoxContainer/Panel/HBoxContainer/VBoxContainer/Save_selected_area" method="_on_pressed"]
+[connection signal="pressed" from="Interfase/Panel/VBoxContainer/Button" to="Interfase/Panel/VBoxContainer/Button" method="_on_pressed"]

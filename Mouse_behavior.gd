@@ -7,14 +7,21 @@ var selected_cell
 var sc_buf
 var rectangle_buf = []
 var grab = false
+var highlighting = false
 
 func _process(delta):
 	queue_redraw()
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if !grab:
-			rectangle_buf.clear()
-			sc_buf = selected_cell
-		grab = true
+	if Input.is_action_pressed("ui_cancel"):
+		highlighting = false
+		rectangle_buf.clear()
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		if !highlighting:
+			if !grab:
+				rectangle_buf.clear()
+				sc_buf = selected_cell
+			grab = true
+			highlighting = true
 	else:
 		if grab:
 			rectangle_buf = [sc_buf,selected_cell]
@@ -22,7 +29,7 @@ func _process(delta):
 	
 	mouse_pos = get_global_mouse_position()
 	selected_cell = Vector2i(mouse_pos / pixels_in_tile)
-	
+
 	if !grab:
 		$red.global_position = selected_cell * 32 + half_pixels_in_tile
 
