@@ -1,5 +1,7 @@
 res://Level_generator/Level_gen.tscn
 res://Level_generator/Main_tile_set.tres
+res://Load_preset.gd
 res://Main_editor_script.gd
-res://editor.tscn
 res://Save_selected_area.gd
+res://editor.tscn
+res://AdditionalTileMap.gd

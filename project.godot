@@ -15,10 +15,6 @@ run/main_scene="res://Level_generator/Level_gen.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
-[display]
-
-window/stretch/scale=0.51
-
 [rendering]
 
 renderer/rendering_method="mobile"
